@@ -5,6 +5,7 @@ import logo from '../Assets/logo.png'
 import cart_icon from '../Assets/cart_icon.png'
 import { ShopContext } from '../../Context/ShopContext'
 import nav_dropdown from '../Assets/nav_dropdown.png'
+import MenuItem from './sub_menu.jsx'
 
 const Navbar = () => {
 
@@ -22,14 +23,42 @@ const Navbar = () => {
     <div className='nav'>
       <Link to='/' style={{ textDecoration: 'none' }} className="nav-logo">
         <img src={logo} alt="logo" />
-        <p>SHOPPER</p>
+        {/* <p>VASTRA VILLAGE</p> */}
       </Link>
       <img onClick={dropdown_toggle} className='nav-dropdown' src={nav_dropdown} alt="" />
       <ul ref={menuRef} className="nav-menu">
-        <li onClick={()=>{setMenu("shop")}}><Link to='/' style={{ textDecoration: 'none' }}>Shop</Link>{menu==="shop"?<hr/>:<></>}</li>
+        {/* <li onClick={()=>{setMenu("shop")}}><Link to='/' style={{ textDecoration: 'none' }}>Shop</Link>{menu==="shop"?<hr/>:<></>}</li>
         <li onClick={()=>{setMenu("mens")}}><Link to='/mens' style={{ textDecoration: 'none' }}>Men</Link>{menu==="mens"?<hr/>:<></>}</li>
         <li onClick={()=>{setMenu("womens")}}><Link to='/womens' style={{ textDecoration: 'none' }}>Women</Link>{menu==="womens"?<hr/>:<></>}</li>
-        <li onClick={()=>{setMenu("kids")}}><Link to='/kids' style={{ textDecoration: 'none' }}>Kids</Link>{menu==="kids"?<hr/>:<></>}</li>
+        <li onClick={()=>{setMenu("kids")}}><Link to='/kids' style={{ textDecoration: 'none' }}>Kids</Link>{menu==="kids"?<hr/>:<></>}</li> */}
+        <MenuItem to="/" label="Shop" subtopics={[
+          () => <div>Test 1</div>,
+          () => <div style={{ padding: '8px', borderBottom: '1px solid #ccc' }}>
+            <h4 style={{ margin: '0', color: '#333' }}>Custom Item</h4>
+            <p style={{ margin: '0', color: '#666' }}>Additional Details</p>
+          </div>,
+        ]} />
+        <MenuItem to="/" label="Men" onClick={()=>{setMenu("shop")}} subtopics={[
+          () => <div>Test 1</div>,
+          () => <div style={{ padding: '8px', borderBottom: '1px solid #ccc' }}>
+            <h4 style={{ margin: '0', color: '#333' }}>Custom Item</h4>
+            <p style={{ margin: '0', color: '#666' }}>Additional Details</p>
+          </div>,
+        ]} />
+        <MenuItem to="/" label="Women" subtopics={[
+          () => <div>Test 1</div>,
+          () => <div style={{ padding: '8px', borderBottom: '1px solid #ccc' }}>
+            <h4 style={{ margin: '0', color: '#333' }}>Custom Item</h4>
+            <p style={{ margin: '0', color: '#666' }}>Additional Details</p>
+          </div>,
+        ]} />
+        <MenuItem to="/" label="Kids" subtopics={[
+          () => <div>Test 1</div>,
+          () => <div style={{ padding: '8px', borderBottom: '1px solid #ccc' }}>
+            <h4 style={{ margin: '0', color: '#333' }}>Custom Item</h4>
+            <p style={{ margin: '0', color: '#666' }}>Additional Details</p>
+          </div>,
+        ]} />
       </ul>
       <div className="nav-login-cart">
         {localStorage.getItem('auth-token')
